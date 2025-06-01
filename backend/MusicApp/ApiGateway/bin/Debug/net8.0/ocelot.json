@@ -1,0 +1,43 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/auth/{**catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identityservice",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/auth/{**catchAll}",
+      "UpstreamHttpMethod": [ "POST", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/music/{**catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "musicservice",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/music/{**catchAll}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/favorites/{**catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "favoriteservice",
+          "Port": 5003
+        }
+      ],
+      "UpstreamPathTemplate": "/api/favorites/{**catchAll}",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000"
+  }
+}
