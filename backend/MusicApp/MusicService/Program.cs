@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using MusicService.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,15 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
+
+app.UseStaticFiles(new StaticFileOptions
+{
+	FileProvider = new PhysicalFileProvider(
+		Path.Combine(app.Environment.ContentRootPath, "MusicFiles")),
+	RequestPath = "/api/music/files"
+});
+
+
 
 app.UseCors("AllowAll");
 app.UseHttpsRedirection();
